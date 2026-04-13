@@ -7,6 +7,8 @@ fn main() {
     println!("Guess the number!");
 
     let secret_number = rand::thread_rng().gen_range(1..=100);
+    const MAX_ATTEMPTS: u32 = 7;
+    let mut attempts = 0;
 
     loop {
         println!("Please input your guess");
@@ -22,6 +24,8 @@ fn main() {
             Err(_) => continue,
         };
 
+        attempts += 1;
+
         println!("You guessed: {guess}");
 
         // compare guess to secret_number
@@ -33,6 +37,10 @@ fn main() {
                 println!("You win!");
                 break;
             }
+        }
+
+        if (attempts > MAX_ATTEMPTS) {
+            println!("You have used all your attempts! The number was {secret_number} ")
         }
     }
 }
