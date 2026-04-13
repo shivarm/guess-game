@@ -34,12 +34,12 @@ fn main() {
             Ordering::Less => println!("Too small"),
             Ordering::Greater => println!("Too big!"),
             Ordering::Equal => {
-                println!("You win!");
+                println!("You win in {attempts} attempts!");
                 break;
             }
         }
 
-        if (attempts > MAX_ATTEMPTS) {
+        if attempts > MAX_ATTEMPTS {
             println!("You have used all your attempts! The number was {secret_number} ")
         }
     }
