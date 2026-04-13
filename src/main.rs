@@ -40,7 +40,8 @@ fn main() {
         }
 
         if attempts > MAX_ATTEMPTS {
-            println!("You have used all your attempts! The number was {secret_number} ")
+            println!("You have used all your attempts! The number was {secret_number} ");
+            break;
         }
     }
 }
