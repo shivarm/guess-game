@@ -8,6 +8,8 @@ fn main() {
 
     let secret_number = rand::thread_rng().gen_range(1..=100);
     const MAX_ATTEMPTS: u32 = 7;
+    const HINT_THRESHOLD: u32 = 3;
+    const HINT_RANGE: u32 = 10;
     let mut attempts = 0;
 
     loop {
@@ -37,6 +39,13 @@ fn main() {
                 println!("You win in {attempts} attempts!");
                 break;
             }
+        }
+
+        // Give a hint after HINT_THRESHOLD attempts
+        if attempts >= HINT_THRESHOLD && guess != secret_number {
+            let lower = if secret_number > HINT_RANGE { secret_number - HINT_RANGE } else { 1 };
+            let upper = if secret_number + HINT_RANGE < 100 { secret_number + HINT_RANGE } else { 100 };
+            println!("Hint: The number is between {lower} and {upper}.");
         }
 
         if attempts > MAX_ATTEMPTS {
